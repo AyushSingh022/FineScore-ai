@@ -1,0 +1,6 @@
+{
+  "summary": "Complete implementation plan for FinScore AI — a 28-file full-stack project spanning Spring Boot 3.2 (Java 17), FastAPI (Python), Thymeleaf templates, XGBoost ML model, LangChain RAG pipeline, and MySQL database. Organized in 6 phases: skeleton, ML service, Spring Boot backend, Thymeleaf frontend, static assets, and deployment config. Includes architecture diagram, file manifest, open questions about deployment and ML approach, and verification plan.",
+  "updatedAt": "2026-07-25T05:23:53.503809600Z",
+  "requestFeedback": true,
+  "userFacing": true
+}

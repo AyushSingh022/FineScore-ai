@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<!--
+    FinScore AI — Sign-Up / Registration Page (register.html)
+    ==========================================================
+    Public registration page for new admin users:
+    - Government of India themed background (matches login)
+    - Animated particles + emblem watermark
+    - Multi-field registration form with real-time validation
+    - Role selection (Admin, Analyst, Viewer)
+    - Password strength indicator
+-->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FinScore AI — Create New Admin Account">
+    <title>Create Account — FinScore AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --saffron: #FF9933;
+            --saffron-dark: #e67e00;
+            --navy: #000080;
+            --navy-light: #1a237e;
+            --green-india: #138808;
+            --gold: #D4AF37;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(160deg, #000035 0%, #000080 35%, #0d1a4e 65%, #001a00 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: -40%; left: -20%;
+            width: 80vw; height: 80vh;
+            background: radial-gradient(ellipse, rgba(255,153,51,0.14) 0%, transparent 70%);
+            animation: driftOrange 12s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -30%; right: -15%;
+            width: 70vw; height: 70vh;
+            background: radial-gradient(ellipse, rgba(19,136,8,0.11) 0%, transparent 70%);
+            animation: driftGreen 15s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes driftOrange { from{transform:translate(0,0) scale(1)} to{transform:translate(5vw,5vh) scale(1.15)} }
+        @keyframes driftGreen  { from{transform:translate(0,0) scale(1)} to{transform:translate(-5vw,-5vh) scale(1.12)} }
+
+        #particleCanvas { position:fixed; inset:0; pointer-events:none; z-index:0; }
+
+        .emblem-bg {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(55vw,55vh); height: min(55vw,55vh);
+            background: url('/images/gov_india_emblem.png') center/contain no-repeat;
+            opacity: 0.06;
+            filter: sepia(1) hue-rotate(30deg) brightness(1.4);
+            z-index: 0;
+            animation: slowPulse 8s ease-in-out infinite;
+        }
+        @keyframes slowPulse { 0%,100%{opacity:0.06} 50%{opacity:0.10} }
+
+        /* ── Wrapper ── */
+        .register-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 560px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 2.5rem 2.5rem 2rem;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+            animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+        }
+        @keyframes slideUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+
+        /* Header */
+        .register-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .emblem-small {
+            width: 64px; height: 64px;
+            background: url('/images/gov_india_emblem.png') center/contain no-repeat;
+            filter: drop-shadow(0 0 16px rgba(255,153,51,0.55)) brightness(1.3);
+            margin: 0 auto 1rem;
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+        @keyframes glowPulse {
+            0%,100%{filter:drop-shadow(0 0 16px rgba(255,153,51,0.55)) brightness(1.3)}
+            50%{filter:drop-shadow(0 0 28px rgba(255,153,51,0.85)) brightness(1.5)}
+        }
+        .tricolour-bar {
+            display: flex; width: 60px; height: 3px;
+            border-radius: 2px; overflow: hidden; gap: 1px; margin: 0 auto 0.75rem;
+        }
+        .tricolour-bar span:nth-child(1){ flex:1; background:var(--saffron); }
+        .tricolour-bar span:nth-child(2){ flex:1; background:#fff; }
+        .tricolour-bar span:nth-child(3){ flex:1; background:var(--green-india); }
+
+        .register-title { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+        .register-subtitle { font-size: 0.83rem; color: rgba(255,255,255,0.5); }
+
+        /* Two-column grid for name fields */
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media(max-width:480px){ .form-row { grid-template-columns: 1fr; } }
+
+        /* Field */
+        .field-group { margin-bottom: 1.1rem; }
+        .field-group label {
+            display: flex; align-items: center; gap: 0.4rem;
+            font-size: 0.78rem; font-weight: 600;
+            color: rgba(255,255,255,0.65);
+            text-transform: uppercase; letter-spacing: 0.5px;
+            margin-bottom: 0.35rem;
+        }
+        .field-group label .required { color: var(--saffron); }
+        .input-wrap { position: relative; }
+        .input-icon {
+            position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+            color: rgba(255,255,255,0.35); font-size: 0.95rem;
+            pointer-events: none; transition: color 0.25s;
+        }
+        .input-wrap:focus-within .input-icon { color: var(--saffron); }
+        .field-group input, .field-group select {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.6rem;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 11px;
+            color: #ffffff;
+            font-size: 0.92rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.25s;
+            outline: none;
+        }
+        .field-group select { appearance: none; -webkit-appearance: none; cursor: pointer; }
+        .field-group input::placeholder { color: rgba(255,255,255,0.28); }
+        .field-group input:focus, .field-group select:focus {
+            background: rgba(255,255,255,0.11);
+            border-color: var(--saffron);
+            box-shadow: 0 0 0 3px rgba(255,153,51,0.16);
+        }
+        .field-group input.is-valid   { border-color: var(--green-india); }
+        .field-group input.is-invalid { border-color: #ef5350; }
+
+        /* Toggle password */
+        .toggle-pw {
+            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            background: none; border: none;
+            color: rgba(255,255,255,0.35); cursor: pointer;
+            font-size: 0.95rem; transition: color 0.2s;
+        }
+        .toggle-pw:hover { color: var(--saffron); }
+
+        /* Inline validation text */
+        .field-hint {
+            font-size: 0.73rem; margin-top: 0.3rem;
+            color: rgba(255,255,255,0.35);
+            display: flex; align-items: center; gap: 0.3rem;
+        }
+        .field-hint.valid   { color: #6fcf97; }
+        .field-hint.invalid { color: #ff6b6b; }
+
+        /* Password strength meter */
+        .strength-bar {
+            height: 4px; border-radius: 2px; overflow: hidden;
+            background: rgba(255,255,255,0.1); margin-top: 0.4rem;
+        }
+        .strength-fill {
+            height: 100%; border-radius: 2px;
+            transition: width 0.35s ease, background 0.35s ease;
+            width: 0%;
+        }
+        .strength-label {
+            font-size: 0.7rem; margin-top: 0.25rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Select arrow */
+        .select-wrap { position: relative; }
+        .select-wrap::after {
+            content: '\F282'; font-family: 'bootstrap-icons';
+            position: absolute; right: 13px; top: 50%; transform: translateY(-50%);
+            color: rgba(255,255,255,0.35); pointer-events: none; font-size: 0.9rem;
+        }
+        .select-wrap select { padding-right: 2.5rem; }
+
+        /* Terms checkbox */
+        .terms-wrap {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            margin-bottom: 1.3rem;
+        }
+        .terms-wrap input[type="checkbox"] {
+            accent-color: var(--saffron);
+            width: 16px; height: 16px;
+            margin-top: 2px; flex-shrink: 0; cursor: pointer;
+        }
+        .terms-wrap span { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+        .terms-wrap a { color: var(--saffron); text-decoration: none; }
+        .terms-wrap a:hover { text-decoration: underline; }
+
+        /* Submit button */
+        .btn-register {
+            width: 100%; padding: 0.9rem;
+            background: linear-gradient(135deg, var(--saffron-dark), var(--saffron));
+            border: none; border-radius: 12px;
+            color: #ffffff; font-size: 1rem; font-weight: 700;
+            letter-spacing: 0.3px; cursor: pointer;
+            transition: all 0.25s;
+            display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+            position: relative; overflow: hidden;
+        }
+        .btn-register::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
+            opacity: 0; transition: opacity 0.25s;
+        }
+        .btn-register:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,153,51,0.4); }
+        .btn-register:hover::before { opacity: 1; }
+        .btn-register:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        /* Sign-in link */
+        .signin-row {
+            text-align: center; margin-top: 1.5rem;
+            font-size: 0.83rem; color: rgba(255,255,255,0.45);
+        }
+        .signin-row a { color: var(--saffron); text-decoration: none; font-weight: 600; }
+        .signin-row a:hover { text-decoration: underline; }
+
+        /* Alert messages */
+        .alert-success {
+            background: rgba(19,136,8,0.18);
+            border: 1px solid rgba(19,136,8,0.35);
+            border-radius: 10px; color: #6fcf97;
+            padding: 0.75rem 1rem; margin-bottom: 1.2rem;
+            font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .alert-error {
+            background: rgba(198,40,40,0.18);
+            border: 1px solid rgba(198,40,40,0.35);
+            border-radius: 10px; color: #ff6b6b;
+            padding: 0.75rem 1rem; margin-bottom: 1.2rem;
+            font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        /* Step indicators */
+        .steps {
+            display: flex; gap: 0.4rem; margin-bottom: 2rem;
+        }
+        .step { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.1); transition: background 0.4s; }
+        .step.active { background: var(--saffron); }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="particleCanvas"></canvas>
+    <div class="emblem-bg" aria-hidden="true"></div>
+
+    <div class="register-wrapper" role="main">
+
+        <!-- Header -->
+        <div class="register-header">
+            <div class="emblem-small" role="img" aria-label="Government of India Emblem"></div>
+            <div class="tricolour-bar"><span></span><span></span><span></span></div>
+            <div class="register-title">Create Account</div>
+            <div class="register-subtitle">Join FinScore AI Admin Portal</div>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="steps" aria-label="Registration progress">
+            <div class="step active" id="step1-indicator"></div>
+            <div class="step" id="step2-indicator"></div>
+            <div class="step" id="step3-indicator"></div>
+        </div>
+
+        <!-- Flash messages from server -->
+        <div th:if="${success}" class="alert-success" role="alert">
+            <i class="bi bi-check-circle-fill"></i>
+            <span th:text="${success}">Account created successfully!</span>
+        </div>
+        <div th:if="${error}" class="alert-error" role="alert">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span th:text="${error}">Registration failed. Please try again.</span>
+        </div>
+
+        <!-- Registration Form -->
+        <form id="register-form" method="post" th:action="@{/register}" novalidate>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+            <!-- Row 1: Name -->
+            <div class="form-row">
+                <div class="field-group">
+                    <label for="firstName">First Name <span class="required">*</span></label>
+                    <div class="input-wrap">
+                        <input type="text" id="firstName" name="firstName"
+                               placeholder="Ravi" required maxlength="50"
+                               aria-label="First name">
+                        <i class="bi bi-person input-icon"></i>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="lastName">Last Name <span class="required">*</span></label>
+                    <div class="input-wrap">
+                        <input type="text" id="lastName" name="lastName"
+                               placeholder="Kumar" required maxlength="50"
+                               aria-label="Last name">
+                        <i class="bi bi-person input-icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="field-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <div class="input-wrap">
+                    <input type="email" id="email" name="email"
+                           placeholder="ravi.kumar@gov.in" required maxlength="100"
+                           aria-label="Email address">
+                    <i class="bi bi-envelope input-icon"></i>
+                </div>
+                <div class="field-hint" id="email-hint"></div>
+            </div>
+
+            <!-- Organization -->
+            <div class="field-group">
+                <label for="organization">Organization / Department</label>
+                <div class="input-wrap">
+                    <input type="text" id="organization" name="organization"
+                           placeholder="e.g. NABARD, Ministry of Finance"
+                           maxlength="100" aria-label="Organization or department">
+                    <i class="bi bi-building input-icon"></i>
+                </div>
+            </div>
+
+            <!-- Role -->
+            <div class="field-group">
+                <label for="role">Access Role <span class="required">*</span></label>
+                <div class="input-wrap select-wrap">
+                    <select id="role" name="role" required aria-label="Select access role">
+                        <option value="" disabled selected>Select your role…</option>
+                        <option value="ADMIN">Admin — Full access</option>
+                        <option value="ANALYST">Analyst — Read + Export</option>
+                        <option value="VIEWER">Viewer — Read only</option>
+                    </select>
+                    <i class="bi bi-shield-lock input-icon"></i>
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="field-group">
+                <label for="reg-username">Username <span class="required">*</span></label>
+                <div class="input-wrap">
+                    <input type="text" id="reg-username" name="username"
+                           placeholder="Choose a unique username" required
+                           minlength="4" maxlength="30"
+                           pattern="[a-zA-Z0-9_]+"
+                           aria-label="Username">
+                    <i class="bi bi-at input-icon"></i>
+                </div>
+                <div class="field-hint" id="username-hint">Min. 4 characters, letters/numbers/underscore only</div>
+            </div>
+
+            <!-- Password -->
+            <div class="field-group">
+                <label for="reg-password">Password <span class="required">*</span></label>
+                <div class="input-wrap">
+                    <input type="password" id="reg-password" name="password"
+                           placeholder="Create a strong password" required
+                           minlength="8" aria-label="Password"
+                           autocomplete="new-password">
+                    <i class="bi bi-lock input-icon"></i>
+                    <button type="button" class="toggle-pw" id="toggle-pw1" aria-label="Toggle password visibility">
+                        <i class="bi bi-eye" id="pw1-eye"></i>
+                    </button>
+                </div>
+                <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+                <div class="strength-label" id="strength-label">Password strength</div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="field-group">
+                <label for="confirm-password">Confirm Password <span class="required">*</span></label>
+                <div class="input-wrap">
+                    <input type="password" id="confirm-password" name="confirmPassword"
+                           placeholder="Re-enter your password" required
+                           autocomplete="new-password" aria-label="Confirm password">
+                    <i class="bi bi-lock-fill input-icon"></i>
+                    <button type="button" class="toggle-pw" id="toggle-pw2" aria-label="Toggle confirm password visibility">
+                        <i class="bi bi-eye" id="pw2-eye"></i>
+                    </button>
+                </div>
+                <div class="field-hint" id="confirm-hint"></div>
+            </div>
+
+            <!-- Terms -->
+            <div class="terms-wrap">
+                <input type="checkbox" id="terms" name="terms" required aria-label="Accept terms">
+                <span>
+                    I agree to the <a href="#" tabindex="-1">Terms of Use</a> and
+                    <a href="#" tabindex="-1">Privacy Policy</a>. I confirm I am an authorized
+                    personnel of a government or affiliated financial institution.
+                </span>
+            </div>
+
+            <button type="submit" class="btn-register" id="register-btn">
+                <i class="bi bi-person-plus-fill"></i>
+                <span>Create Account</span>
+            </button>
+        </form>
+
+        <div class="signin-row">
+            Already have an account? <a href="/login">Sign In</a>
+        </div>
+    </div>
+
+    <script>
+        /* ── Particle system (same as login page) ── */
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [];
+        function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+        resize(); window.addEventListener('resize', resize);
+        const COLORS = ['rgba(255,153,51,','rgba(255,255,255,','rgba(19,136,8,'];
+        class Particle {
+            constructor(){ this.reset(); }
+            reset() {
+                this.x=Math.random()*W; this.y=Math.random()*H;
+                this.r=Math.random()*2+0.5; this.vx=(Math.random()-0.5)*0.35; this.vy=(Math.random()-0.5)*0.35;
+                this.alpha=Math.random()*0.45+0.08;
+                this.color=COLORS[Math.floor(Math.random()*COLORS.length)];
+                this.life=0; this.maxLife=Math.random()*300+150;
+            }
+            update(){ this.x+=this.vx; this.y+=this.vy; this.life++; if(this.life>this.maxLife||this.x<0||this.x>W||this.y<0||this.y>H) this.reset(); }
+            draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=this.color+this.alpha+')'; ctx.fill(); }
+        }
+        for(let i=0;i<100;i++) particles.push(new Particle());
+        function animate(){ ctx.clearRect(0,0,W,H); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); }
+        animate();
+
+        /* ── Toggle passwords ── */
+        function makeToggle(btnId, inputId, iconId) {
+            document.getElementById(btnId).addEventListener('click', function() {
+                const input = document.getElementById(inputId);
+                const icon  = document.getElementById(iconId);
+                input.type = input.type === 'password' ? 'text' : 'password';
+                icon.className = input.type === 'password' ? 'bi bi-eye' : 'bi bi-eye-slash';
+            });
+        }
+        makeToggle('toggle-pw1','reg-password','pw1-eye');
+        makeToggle('toggle-pw2','confirm-password','pw2-eye');
+
+        /* ── Password strength ── */
+        const pwInput = document.getElementById('reg-password');
+        const strengthFill = document.getElementById('strength-fill');
+        const strengthLabel = document.getElementById('strength-label');
+        pwInput.addEventListener('input', function() {
+            const val = this.value;
+            let score = 0;
+            if (val.length >= 8)  score++;
+            if (/[A-Z]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^A-Za-z0-9]/.test(val)) score++;
+            const levels = [
+                { pct:'0%',  color:'transparent', label:'Password strength' },
+                { pct:'25%', color:'#ef5350',  label:'Weak' },
+                { pct:'50%', color:'#FFA726',  label:'Fair' },
+                { pct:'75%', color:'#42A5F5',  label:'Good' },
+                { pct:'100%',color:'#66BB6A',  label:'Strong' }
+            ];
+            const lvl = levels[score];
+            strengthFill.style.width    = lvl.pct;
+            strengthFill.style.background = lvl.color;
+            strengthLabel.textContent   = lvl.label;
+            strengthLabel.style.color   = score > 0 ? lvl.color : 'rgba(255,255,255,0.4)';
+        });
+
+        /* ── Confirm password match ── */
+        document.getElementById('confirm-password').addEventListener('input', function() {
+            const hint = document.getElementById('confirm-hint');
+            const match = this.value === pwInput.value;
+            if (this.value === '') { hint.textContent = ''; hint.className = 'field-hint'; return; }
+            if (match) {
+                hint.innerHTML = '<i class="bi bi-check-circle-fill"></i> Passwords match';
+                hint.className = 'field-hint valid';
+                this.classList.remove('is-invalid'); this.classList.add('is-valid');
+            } else {
+                hint.innerHTML = '<i class="bi bi-x-circle-fill"></i> Passwords do not match';
+                hint.className = 'field-hint invalid';
+                this.classList.remove('is-valid'); this.classList.add('is-invalid');
+            }
+        });
+
+        /* ── Email validation hint ── */
+        document.getElementById('email').addEventListener('blur', function() {
+            const hint = document.getElementById('email-hint');
+            const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+            if (!this.value) { hint.textContent = ''; return; }
+            if (valid) {
+                hint.innerHTML = '<i class="bi bi-check-circle-fill"></i> Looks good';
+                hint.className = 'field-hint valid';
+                this.classList.add('is-valid'); this.classList.remove('is-invalid');
+            } else {
+                hint.innerHTML = '<i class="bi bi-x-circle-fill"></i> Enter a valid email address';
+                hint.className = 'field-hint invalid';
+                this.classList.add('is-invalid'); this.classList.remove('is-valid');
+            }
+        });
+
+        /* ── Username hint ── */
+        document.getElementById('reg-username').addEventListener('input', function() {
+            const hint = document.getElementById('username-hint');
+            const valid = /^[a-zA-Z0-9_]{4,30}$/.test(this.value);
+            if (valid) {
+                hint.innerHTML = '<i class="bi bi-check-circle-fill"></i> Username looks good';
+                hint.className = 'field-hint valid';
+            } else {
+                hint.innerHTML = 'Min. 4 characters, letters/numbers/underscore only';
+                hint.className = 'field-hint';
+            }
+        });
+
+        /* ── Step indicator update on scroll through fields ── */
+        const steps = [document.getElementById('step1-indicator'), document.getElementById('step2-indicator'), document.getElementById('step3-indicator')];
+        const fields1 = ['firstName','lastName','email'];
+        const fields2 = ['organization','role','reg-username'];
+        function updateSteps() {
+            const g1 = fields1.every(id => document.getElementById(id).value.trim());
+            const g2 = fields2.every(id => document.getElementById(id).value.trim());
+            if (g1) steps[1].classList.add('active'); else steps[1].classList.remove('active');
+            if (g2) steps[2].classList.add('active'); else steps[2].classList.remove('active');
+        }
+        document.getElementById('register-form').addEventListener('input', updateSteps);
+
+        /* ── Submit with loading state ── */
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            const confirm = document.getElementById('confirm-password').value;
+            const pass    = document.getElementById('reg-password').value;
+            if (confirm !== pass) {
+                e.preventDefault();
+                document.getElementById('confirm-hint').innerHTML = '<i class="bi bi-x-circle-fill"></i> Passwords do not match';
+                document.getElementById('confirm-hint').className = 'field-hint invalid';
+                return;
+            }
+            const btn = document.getElementById('register-btn');
+            btn.innerHTML = '<span style="width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;display:inline-block;"></span><span>Creating Account…</span>';
+            btn.disabled = true;
+            document.head.insertAdjacentHTML('beforeend','<style>@keyframes spin{to{transform:rotate(360deg)}}</style>');
+        });
+    </script>
+</body>
+</html>

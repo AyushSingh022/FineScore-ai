@@ -1,0 +1,21 @@
+# Task Progress
+
+- [x] Open http://localhost:8080 and verify homepage loads
+- [x] Navigate to "Assess Credit" form
+- [x] Fill in the Borrower form details:
+    - Farmer
+    - Monthly income: 15000
+    - UPI frequency: 35
+    - Avg UPI amount: 250
+    - Utility consistency: "Always on time"
+    - Mobile recharge: 250
+    - Agricultural yield: 2000
+    - Loan requested: 40000
+    - State: "Uttar Pradesh"
+    - Gender: "Female"
+    - Consent box checked
+- [x] Submit form and verify result page details (score, risk rating, RAG-backed tips, Gemini-based explanation)
+- [ ] Navigate to Dashboard and login if prompted (admin / admin123)
+- [ ] Verify 5 charts load on Dashboard
+- [ ] Verify the assessment we ran is in the table
+- [ ] Click CSV Export and verify it works

@@ -1,0 +1,5 @@
+Successfully scheduled one-shot timer.
+Expected to fire at: 2026-07-25T11:47:45+05:30
+Prompt: Check Maven search status
+
+[2026-07-25T11:47:45+05:30] Timer fired.

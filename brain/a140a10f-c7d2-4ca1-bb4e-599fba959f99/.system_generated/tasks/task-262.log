@@ -1,0 +1,14 @@
+INFO:     Started server process [21840]
+INFO:     Waiting for application startup.
+2026-07-25 11:46:03,722 - finscore-ml - INFO - ============================================================
+2026-07-25 11:46:03,722 - finscore-ml - INFO - FinScore AI ML Service Starting...
+2026-07-25 11:46:03,722 - finscore-ml - INFO - ============================================================
+2026-07-25 11:46:04,972 - finscore-ml - INFO - \u2705 XGBoost model loaded from E:\AI HAcKaTHON\credit-scoring\ml-service\model\credit_model.pkl
+2026-07-25 11:46:04,996 - finscore-ml - INFO - \u2705 Label encoders loaded from E:\AI HAcKaTHON\credit-scoring\ml-service\model\label_encoders.pkl
+2026-07-25 11:46:05,004 - finscore-ml - ERROR - \u274c Failed to initialize RAG pipeline: No module named 'langchain.text_splitter'
+2026-07-25 11:46:05,004 - finscore-ml - WARNING -    RAG tips will use fallback responses
+2026-07-25 11:46:05,004 - finscore-ml - INFO - ============================================================
+2026-07-25 11:46:05,004 - finscore-ml - INFO - FinScore AI ML Service Ready!
+2026-07-25 11:46:05,004 - finscore-ml - INFO - ============================================================
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)

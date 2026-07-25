@@ -1,0 +1,109 @@
+INFO:     Started server process [9928]
+INFO:     Waiting for application startup.
+2026-07-25 11:46:20,596 - finscore-ml - INFO - ============================================================
+2026-07-25 11:46:20,596 - finscore-ml - INFO - FinScore AI ML Service Starting...
+2026-07-25 11:46:20,596 - finscore-ml - INFO - ============================================================
+2026-07-25 11:46:21,722 - finscore-ml - INFO - \u2705 XGBoost model loaded from E:\AI HAcKaTHON\credit-scoring\ml-service\model\credit_model.pkl
+2026-07-25 11:46:21,723 - finscore-ml - INFO - \u2705 Label encoders loaded from E:\AI HAcKaTHON\credit-scoring\ml-service\model\label_encoders.pkl
+2026-07-25 11:46:34,822 - rag_pipeline - INFO - Initializing RAG Pipeline...
+E:\AI HAcKaTHON\credit-scoring\ml-service\rag\rag_pipeline.py:86: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
+  self.embeddings = HuggingFaceEmbeddings(
+2026-07-25 11:46:35,578 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-07-25 11:46:36,002 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-25 11:46:36,006 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-25 11:46:36,025 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:36,061 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json "HTTP/1.1 200 OK"
+E:\AI HAcKaTHON\credit-scoring\ml-service\venv\Lib\site-packages\huggingface_hub\file_download.py:139: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\ayush\.cache\huggingface\hub\models--sentence-transformers--all-MiniLM-L6-v2. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+2026-07-25 11:46:36,337 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:36,354 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:36,387 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:36,399 - sentence_transformers.base.model - INFO - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+2026-07-25 11:46:36,647 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:36,670 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:36,906 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:36,925 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md "HTTP/1.1 200 OK"
+2026-07-25 11:46:36,947 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md "HTTP/1.1 200 OK"
+2026-07-25 11:46:37,213 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:37,231 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:37,504 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:37,520 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:37,539 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:37,794 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-25 11:46:38,045 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:38,064 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:38,095 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:38,403 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|##########| 103/103 [00:00<00:00, 6337.11it/s]
+2026-07-25 11:46:47,373 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-25 11:46:47,612 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-25 11:46:47,859 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-25 11:46:48,094 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-25 11:46:48,330 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:48,347 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:48,368 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:48,640 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:48,659 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:48,911 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:48,926 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:49,167 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:49,186 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:49,429 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-25 11:46:49,662 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-25 11:46:49,912 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:49,930 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt "HTTP/1.1 200 OK"
+2026-07-25 11:46:49,951 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt "HTTP/1.1 200 OK"
+2026-07-25 11:46:50,228 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:50,247 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:50,275 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:50,585 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-07-25 11:46:50,843 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:50,862 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:50,885 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:51,142 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-07-25 11:46:51,486 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-25 11:46:51,506 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:51,529 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-07-25 11:46:51,800 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-07-25 11:46:51,808 - rag_pipeline - INFO - Building FAISS index from E:\AI HAcKaTHON\credit-scoring\ml-service\rag\rbi_guidelines.txt
+2026-07-25 11:46:51,810 - rag_pipeline - INFO - Loaded guidelines: 53518 characters
+2026-07-25 11:46:51,812 - rag_pipeline - INFO - Split into 95 chunks
+2026-07-25 11:46:53,591 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-07-25 11:46:53,591 - faiss.loader - INFO - Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-07-25 11:46:53,591 - faiss.loader - INFO - Loading faiss.
+2026-07-25 11:46:54,315 - faiss.loader - INFO - Successfully loaded faiss.
+2026-07-25 11:46:54,354 - rag_pipeline - INFO - FAISS index saved to E:\AI HAcKaTHON\credit-scoring\ml-service\rag\faiss_index
+2026-07-25 11:46:54,354 - finscore-ml - INFO - \u2705 RAG pipeline initialized
+2026-07-25 11:46:54,354 - finscore-ml - INFO - ============================================================
+2026-07-25 11:46:54,354 - finscore-ml - INFO - FinScore AI ML Service Ready!
+2026-07-25 11:46:54,355 - finscore-ml - INFO - ============================================================
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2026-07-25 11:51:04,543 - finscore-ml - INFO - Prediction: score=37, risk=High Risk, eligible=True, max_loan=\u20b95,775.00
+INFO:     127.0.0.1:64099 - "POST /predict HTTP/1.1" 200 OK
+2026-07-25 11:51:06,082 - finscore-ml - INFO - RAG tips generated for Farmer (score: 37): 3 tips
+INFO:     127.0.0.1:64099 - "POST /rag/tips HTTP/1.1" 200 OK
+2026-07-25 11:53:59,104 - finscore-ml - WARNING - Unknown value 'Prefer not to say' for 'gender', using default: 'Female'
+2026-07-25 11:53:59,117 - finscore-ml - INFO - Prediction: score=46, risk=Medium Risk, eligible=True, max_loan=\u20b940,000.00
+INFO:     127.0.0.1:58584 - "POST /predict HTTP/1.1" 200 OK
+2026-07-25 11:53:59,665 - finscore-ml - INFO - RAG tips generated for Farmer (score: 46): 3 tips
+INFO:     127.0.0.1:58584 - "POST /rag/tips HTTP/1.1" 200 OK
+2026-07-25 11:57:20,704 - finscore-ml - INFO - Prediction: score=40, risk=Medium Risk, eligible=True, max_loan=\u20b96,000.00
+INFO:     127.0.0.1:63185 - "POST /predict HTTP/1.1" 200 OK
+2026-07-25 11:57:20,989 - finscore-ml - INFO - RAG tips generated for Farmer (score: 40): 3 tips
+INFO:     127.0.0.1:63185 - "POST /rag/tips HTTP/1.1" 200 OK
+2026-07-25 12:02:39,462 - finscore-ml - INFO - Prediction: score=45, risk=Medium Risk, eligible=True, max_loan=\u20b930,000.00
+INFO:     127.0.0.1:64626 - "POST /predict HTTP/1.1" 200 OK
+2026-07-25 12:02:40,641 - finscore-ml - INFO - RAG tips generated for Farmer (score: 45): 3 tips
+INFO:     127.0.0.1:64626 - "POST /rag/tips HTTP/1.1" 200 OK
+2026-07-25 12:06:37,572 - finscore-ml - INFO - Prediction: score=34, risk=High Risk, eligible=True, max_loan=\u20b95,000.00
+INFO:     127.0.0.1:65345 - "POST /predict HTTP/1.1" 200 OK
+2026-07-25 12:06:37,844 - finscore-ml - INFO - RAG tips generated for Other (score: 34): 3 tips
+INFO:     127.0.0.1:65345 - "POST /rag/tips HTTP/1.1" 200 OK
+2026-07-25 21:20:49,074 - finscore-ml - INFO - Prediction: score=40, risk=Medium Risk, eligible=True, max_loan=\u20b927,000.00
+INFO:     127.0.0.1:62873 - "POST /predict HTTP/1.1" 200 OK
+2026-07-25 21:20:50,915 - finscore-ml - INFO - RAG tips generated for Fisher (score: 40): 3 tips
+INFO:     127.0.0.1:62873 - "POST /rag/tips HTTP/1.1" 200 OK

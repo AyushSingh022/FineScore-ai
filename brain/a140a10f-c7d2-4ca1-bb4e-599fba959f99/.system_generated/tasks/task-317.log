@@ -1,0 +1,6 @@
+Successfully scheduled one-shot timer.
+Expected to fire at: 2026-07-25T11:49:08+05:30
+Prompt: Check status of Spring Boot backend task-315
+
+[2026-07-25T11:48:48+05:30] Still waiting. Remaining time: 20s
+[2026-07-25T11:48:53+05:30] Timer cancelled: agent received a message during wait.

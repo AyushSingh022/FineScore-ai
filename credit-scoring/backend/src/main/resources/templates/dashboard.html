@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--
+    FinScore AI — Admin Dashboard (dashboard.html)
+    ================================================
+    Protected admin view with summary stats, Chart.js charts,
+    paginated assessment table, and CSV export.
+    ALL data loaded dynamically via /api/dashboard/* endpoints.
+-->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FinScore AI Admin Dashboard — Assessment analytics, bias monitoring, and data export.">
+    <title>Dashboard — FinScore AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body id="dashboard-page">
+
+    <!-- ═══ Navbar ═══════════════════════════════════════════════ -->
+    <nav class="navbar navbar-expand-lg navbar-custom" aria-label="Main navigation">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-shield-check"></i>
+                Fin<span class="brand-accent">Score</span> AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/form">Assess Credit</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/dashboard">Dashboard</a></li>
+                    <li class="nav-item">
+                        <form method="post" th:action="@{/logout}" style="margin:0;padding:0;display:inline;">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                            <button type="submit" class="nav-link" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.6);padding:0.5rem 1rem;">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ Dashboard Header ═════════════════════════════════════ -->
+    <div class="dashboard-header">
+        <div class="container-fluid px-4">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+                <div>
+                    <h1 th:text="${pageTitle}">FinScore AI Dashboard</h1>
+                    <p th:text="${pageSubtitle}">Assessment Analytics &amp; Bias Monitoring</p>
+                </div>
+                <button class="btn-export" onclick="exportCSV()" aria-label="Export data as CSV">
+                    <i class="bi bi-download"></i> Export CSV
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ Dashboard Content ════════════════════════════════════ -->
+    <section style="padding:1rem 0 3rem;">
+        <div class="container-fluid px-4">
+
+            <!-- Summary Stat Cards -->
+            <div class="dashboard-stats">
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon blue"><i class="bi bi-clipboard-data"></i></div>
+                    <div>
+                        <div class="dash-stat-value" id="stat-total">0</div>
+                        <div class="dash-stat-label">Total Assessments</div>
+                    </div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon saffron"><i class="bi bi-speedometer2"></i></div>
+                    <div>
+                        <div class="dash-stat-value" id="stat-avg-score">0</div>
+                        <div class="dash-stat-label">Average Score</div>
+                    </div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon green"><i class="bi bi-check-circle"></i></div>
+                    <div>
+                        <div class="dash-stat-value" id="stat-eligibility">0%</div>
+                        <div class="dash-stat-label">Eligibility Rate</div>
+                    </div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="dash-stat-icon purple"><i class="bi bi-briefcase"></i></div>
+                    <div>
+                        <div class="dash-stat-value" id="stat-top-occupation" style="font-size:1.1rem">N/A</div>
+                        <div class="dash-stat-label">Top Occupation</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row 1 -->
+            <div class="row g-4">
+                <!-- Score Distribution -->
+                <div class="col-lg-6">
+                    <div class="chart-card">
+                        <h3><i class="bi bi-bar-chart-fill" style="color:var(--secondary);"></i> Score Distribution</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="scoreDistChart" aria-label="Score distribution histogram"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- State-wise Score -->
+                <div class="col-lg-6">
+                    <div class="chart-card">
+                        <h3><i class="bi bi-geo-alt-fill" style="color:var(--secondary);"></i> State-wise Average Score</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="stateChart" aria-label="State-wise average score bar chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row 2 -->
+            <div class="row g-4 mt-1">
+                <!-- Occupation-wise Score -->
+                <div class="col-lg-6">
+                    <div class="chart-card">
+                        <h3><i class="bi bi-briefcase-fill" style="color:var(--secondary);"></i> Occupation-wise Score</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="occupationChart" aria-label="Occupation-wise score comparison"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gender-wise Score (Bias Monitoring) -->
+                <div class="col-lg-6">
+                    <div class="chart-card">
+                        <h3>
+                            <i class="bi bi-shield-fill-check" style="color:var(--secondary);"></i> 
+                            Gender-wise Score 
+                            <span style="font-size:0.75rem;color:var(--text-secondary);font-weight:400;"> — Bias Monitoring</span>
+                        </h3>
+                        <div class="chart-wrapper">
+                            <canvas id="genderChart" aria-label="Gender-wise score comparison for bias monitoring"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row 3 -->
+            <div class="row g-4 mt-1">
+                <!-- Daily Volume -->
+                <div class="col-12">
+                    <div class="chart-card">
+                        <h3><i class="bi bi-graph-up" style="color:var(--secondary);"></i> Daily Assessment Volume (Last 30 Days)</h3>
+                        <div class="chart-wrapper" style="height:250px;">
+                            <canvas id="volumeChart" aria-label="Daily assessment volume line chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Assessments Table -->
+            <div class="chart-card mt-4">
+                <h3><i class="bi bi-table" style="color:var(--secondary);"></i> Recent Assessments</h3>
+                <div style="overflow-x:auto;">
+                    <table class="assessment-table" aria-label="Recent credit assessments">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Occupation</th>
+                                <th>State</th>
+                                <th>Score</th>
+                                <th>Risk</th>
+                                <th>Eligible</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="assessment-table-body">
+                            <tr>
+                                <td colspan="7" style="text-align:center;padding:2rem;color:var(--text-secondary);">
+                                    Loading assessments...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination -->
+                <div class="pagination-custom" id="pagination-container"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid px-4">
+            <div class="footer-bottom" style="padding-top:0;margin-top:0;">
+                <span>&copy; 2026 FinScore AI — Admin Dashboard</span>
+                <span>All data is anonymized for privacy</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js for dashboard charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>

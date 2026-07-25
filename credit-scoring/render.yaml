@@ -1,0 +1,52 @@
+# ═══════════════════════════════════════════════════════════════
+# FinScore AI — Render Blueprint
+# ═══════════════════════════════════════════════════════════════
+# Defines both services for one-click deployment on Render.
+# Set environment variables in Render dashboard after deployment.
+# ═══════════════════════════════════════════════════════════════
+
+services:
+  # ─── Python ML Service ───────────────────────────────────────
+  - type: web
+    name: finscore-ml-service
+    runtime: docker
+    dockerfilePath: ./ml-service/Dockerfile
+    dockerContext: ./ml-service
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ML_PORT
+        value: 8000
+
+  # ─── Spring Boot Backend ─────────────────────────────────────
+  - type: web
+    name: finscore-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /api/states
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: ML_SERVICE_URL
+        fromService:
+          name: finscore-ml-service
+          type: web
+          property: hostport
+      - key: GEMINI_API_KEY
+        sync: false  # Set manually in Render dashboard
+      - key: DB_URL
+        sync: false  # Set manually — use Render MySQL or external DB
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_DRIVER
+        value: com.mysql.cj.jdbc.Driver
+      - key: DB_DIALECT
+        value: org.hibernate.dialect.MySQLDialect
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false  # Set manually in Render dashboard

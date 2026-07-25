@@ -1,0 +1,35 @@
+# Environment files
+.env
+*.env
+
+# ML artifacts
+*.pkl
+faiss_index/
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.log
+logs/
+hs_err_pid*
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db

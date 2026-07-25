@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--
+    FinScore AI — Credit Assessment Result (result.html)
+    =====================================================
+    Displays the complete credit assessment result with:
+    - Animated SVG score circle
+    - Risk category badge
+    - Loan eligibility details
+    - Gemini AI explanation with language toggle
+    - RAG-powered financial tips
+    - Responsible AI transparency note
+    - PDF download button
+-->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your FinScore AI credit assessment result — AI-generated credit score with explanation and personalized financial tips.">
+    <title>Your Credit Score — FinScore AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ═══ Navbar ═══════════════════════════════════════════════ -->
+    <nav class="navbar navbar-expand-lg navbar-custom" aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-shield-check"></i>
+                Fin<span class="brand-accent">Score</span> AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/form">Assess Credit</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ Result Header ═══════════════════════════════════════ -->
+    <div class="result-header">
+        <div class="container">
+            <h1 th:text="${pageTitle}">Your FinScore AI Credit Assessment</h1>
+            <p style="color:rgba(255,255,255,0.7);margin-top:0.5rem;" 
+               th:text="'Assessment for ' + ${result.fullName}">Assessment Result</p>
+        </div>
+    </div>
+
+    <!-- ═══ Result Content ═══════════════════════════════════════ -->
+    <section class="section" style="padding-top:0;" id="result-content">
+        <div class="container" style="max-width:900px;">
+
+            <!-- Score Circle -->
+            <div class="score-container">
+                <div class="score-circle" 
+                     th:data-score="${result.creditScore}" 
+                     th:data-risk="${result.riskCategory == 'Low Risk' ? 'low-risk' : (result.riskCategory == 'Medium Risk' ? 'medium-risk' : 'high-risk')}"
+                     role="img"
+                     th:aria-label="'Credit Score: ' + ${result.creditScore} + ' out of 100'">
+                    <svg viewBox="0 0 200 200">
+                        <circle class="circle-bg" cx="100" cy="100" r="90"></circle>
+                        <circle class="circle-progress" cx="100" cy="100" r="90"></circle>
+                    </svg>
+                    <div class="score-value">
+                        <div class="score-number" id="score-display">0</div>
+                        <div class="score-max">out of 100</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Badge (centered) -->
+            <div style="text-align:center;margin-bottom:2rem;">
+                <span class="risk-badge"
+                      th:classappend="${result.riskCategory == 'Low Risk' ? 'low-risk' : (result.riskCategory == 'Medium Risk' ? 'medium-risk' : 'high-risk')}"
+                      th:text="${result.riskCategory}">
+                    Medium Risk
+                </span>
+            </div>
+
+            <!-- Loan Eligibility Card -->
+            <div class="result-card">
+                <h2 class="result-card-title">
+                    <i class="bi bi-bank2"></i>
+                    <span th:text="${loanEligibilityTitle}">Loan Eligibility</span>
+                </h2>
+                <div class="eligibility-grid">
+                    <div class="eligibility-item">
+                        <div class="eligibility-label">Status</div>
+                        <div class="eligibility-value" 
+                             th:classappend="${result.loanEligible ? 'eligible' : 'not-eligible'}"
+                             th:text="${result.loanEligible ? 'Eligible ✓' : 'Not Eligible ✗'}">
+                            Eligible
+                        </div>
+                    </div>
+                    <div class="eligibility-item">
+                        <div class="eligibility-label">Max Loan Amount</div>
+                        <div class="eligibility-value" 
+                             th:text="'₹' + ${#numbers.formatDecimal(result.maxLoanAmount, 0, 'COMMA', 0, 'POINT')}">
+                            ₹50,000
+                        </div>
+                    </div>
+                    <div class="eligibility-item">
+                        <div class="eligibility-label">Interest Rate</div>
+                        <div class="eligibility-value" th:text="${result.suggestedInterestRate}">
+                            10-12% p.a.
+                        </div>
+                    </div>
+                    <div class="eligibility-item">
+                        <div class="eligibility-label">Confidence</div>
+                        <div class="eligibility-value" 
+                             th:text="${#numbers.formatDecimal(result.mlConfidence * 100, 0, 'POINT', 1, 'POINT')} + '%'">
+                            85.0%
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Explanation Card -->
+            <div class="result-card">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                    <h2 class="result-card-title" style="margin-bottom:0;">
+                        <i class="bi bi-robot"></i>
+                        <span th:text="${explanationTitle}">Why You Got This Score</span>
+                    </h2>
+                    <button class="language-toggle" id="language-toggle-btn"
+                            th:data-current-lang="${result.explanationLanguage}"
+                            th:onclick="'toggleLanguage(' + ${result.id} + ')'"
+                            aria-label="Toggle explanation language">
+                        <i class="bi bi-translate"></i>
+                        <span th:text="${result.explanationLanguage == 'English' ? 'हिंदी' : 'English'}">हिंदी</span>
+                    </button>
+                </div>
+                <div id="explanation-content" style="margin-top:1rem;">
+                    <p class="explanation-text" th:text="${result.explanation}">
+                        AI-generated explanation will appear here.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Financial Tips Card -->
+            <div class="result-card" th:if="${result.tips != null and !result.tips.isEmpty()}">
+                <h2 class="result-card-title">
+                    <i class="bi bi-lightbulb"></i>
+                    <span th:text="${tipsTitle}">How To Improve Your Score</span>
+                </h2>
+                <div th:each="tip : ${result.tips}">
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i class="bi" th:classappend="${tip.icon}"></i>
+                        </div>
+                        <div>
+                            <div class="tip-heading" th:text="${tip.heading}">Tip Heading</div>
+                            <div class="tip-detail" th:text="${tip.detail}">Tip detail text</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsible AI Transparency Note -->
+            <div class="transparency-note">
+                <i class="bi bi-info-circle-fill"></i>
+                <span th:text="${transparencyNote}">
+                    This score was generated by an AI model trained on anonymized alternate financial data.
+                </span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn-secondary-custom" onclick="downloadPDF()" 
+                        aria-label="Download result as PDF">
+                    <i class="bi bi-file-earmark-pdf"></i>
+                    <span th:text="${downloadButtonText}">Download as PDF</span>
+                </button>
+                <a href="/form" class="btn-outline-custom" 
+                   aria-label="Start a new assessment">
+                    <i class="bi bi-arrow-repeat"></i>
+                    <span th:text="${retryButtonText}">Assess Another Borrower</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="padding-top:0;margin-top:0;">
+                <span>&copy; 2026 FinScore AI</span>
+                <span>AI-generated scores are not a substitute for professional financial advice</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>

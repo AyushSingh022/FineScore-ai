@@ -1,0 +1,272 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.finscore:finscore-ai >----------------------
+[INFO] Building FinScore AI 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.0:run (default-cli) > test-compile @ finscore-ai >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ finscore-ai ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 6 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ finscore-ai ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ finscore-ai ---
+[INFO] skip non existing resourceDirectory E:\AI HAcKaTHON\credit-scoring\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ finscore-ai ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.0:run (default-cli) < test-compile @ finscore-ai <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.0:run (default-cli) @ finscore-ai ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+11:59:22.771 [restartedMain] INFO  com.finscore.FinScoreAiApplication - Starting FinScoreAiApplication using Java 22.0.2 with PID 18688 (E:\AI HAcKaTHON\credit-scoring\backend\target\classes started by ayush in E:\AI HAcKaTHON\credit-scoring\backend)
+11:59:22.774 [restartedMain] INFO  com.finscore.FinScoreAiApplication - No active profile set, falling back to 1 default profile: "default"
+11:59:22.821 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+11:59:22.821 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+11:59:23.445 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:59:23.502 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 1 JPA repository interface.
+11:59:24.073 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+11:59:24.091 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+11:59:24.091 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+11:59:24.136 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+11:59:24.138 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1310 ms
+11:59:24.169 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+11:59:24.327 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:finscoreai user=SA
+11:59:24.329 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+11:59:24.339 [restartedMain] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:finscoreai'
+11:59:24.460 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+11:59:24.502 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.3.1.Final
+11:59:24.525 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+11:59:24.719 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+11:59:24.752 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+11:59:25.436 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:59:25.502 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:59:25.754 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+11:59:26.438 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:59:26.535 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+11:59:26.885 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+11:59:26.902 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+11:59:26.923 [restartedMain] INFO  com.finscore.FinScoreAiApplication - Started FinScoreAiApplication in 4.585 seconds (process running for 5.049)
+11:59:59.755 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:59:59.755 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+11:59:59.767 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+11:59:59.779 [http-nio-8080-exec-2] WARN  o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/dashboard' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+11:59:59.808 [http-nio-8080-exec-2] WARN  o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/dashboard' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+12:00:14.334 [http-nio-8080-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 90022, SQLState: 90022
+12:00:14.334 [http-nio-8080-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Function "DATE" not found; SQL statement:
+SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day [90022-224]
+12:00:14.345 [http-nio-8080-exec-10] WARN  c.f.controller.DashboardController - Daily volume query failed (expected on H2): could not prepare statement [Function "DATE" not found; SQL statement:
+SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day [90022-224]] [SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day]; SQL [SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day]
+12:02:39.326 [http-nio-8080-exec-3] INFO  c.f.service.CreditScoringService - Processing assessment for: Amit Kumar (Farmer)
+12:02:39.328 [http-nio-8080-exec-3] INFO  c.f.service.CreditScoringService - Calling ML service at: http://localhost:8000/predict
+12:02:39.492 [http-nio-8080-exec-3] INFO  com.finscore.service.GeminiService - Calling Gemini API for English explanation (score: 45)
+12:02:40.524 [http-nio-8080-exec-3] ERROR com.finscore.service.GeminiService - Gemini API call failed: 400 Bad Request: "{<EOL>  "error": {<EOL>    "code": 400,<EOL>    "message": "API key not valid. Please pass a valid API key.",<EOL>    "status": "INVALID_ARGUMENT",<EOL>    "details": [<EOL>      {<EOL>        "@type": "type.googleapis.com/google.rpc.ErrorInfo",<EOL>        "reason": "API_KEY_INVALID",<EOL>        "domain": "googleapis.com",<EOL>        "metadata": {<EOL>          "service": "generativelanguage.googleapis.com"<EOL>        }<EOL>      },<EOL>      {<EOL>        "@type": "type.googleapis.com/google.rpc.LocalizedMessage",<EOL>        "locale": "en-US",<EOL>        "message": "API key not valid. Please pass a valid API key."<EOL>      }<EOL>    ]<EOL>  }<EOL>}<EOL>"
+12:02:40.525 [http-nio-8080-exec-3] INFO  com.finscore.service.RAGService - Calling RAG service for tips: occupation=Farmer, score=45
+12:02:40.807 [http-nio-8080-exec-3] INFO  c.f.service.CreditScoringService - Assessment saved with ID: 1 | Score: 45 | Risk: Medium Risk
+12:02:40.810 [http-nio-8080-exec-3] INFO  c.f.controller.CreditController - Assessment completed: ID=1, Score=45, Risk=Medium Risk
+12:03:08.164 [http-nio-8080-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 90022, SQLState: 90022
+12:03:08.164 [http-nio-8080-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Function "DATE" not found; SQL statement:
+SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day [90022-224]
+12:03:08.164 [http-nio-8080-exec-9] WARN  c.f.controller.DashboardController - Daily volume query failed (expected on H2): could not prepare statement [Function "DATE" not found; SQL statement:
+SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day [90022-224]] [SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day]; SQL [SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day]
+12:06:37.530 [http-nio-8080-exec-10] INFO  c.f.service.CreditScoringService - Processing assessment for: Ayush Singh (Other)
+12:06:37.530 [http-nio-8080-exec-10] INFO  c.f.service.CreditScoringService - Calling ML service at: http://localhost:8000/predict
+12:06:37.574 [http-nio-8080-exec-10] INFO  com.finscore.service.GeminiService - Calling Gemini API for English explanation (score: 34)
+12:06:37.730 [http-nio-8080-exec-10] ERROR com.finscore.service.GeminiService - Gemini API call failed: 400 Bad Request: "{<EOL>  "error": {<EOL>    "code": 400,<EOL>    "message": "API key not valid. Please pass a valid API key.",<EOL>    "status": "INVALID_ARGUMENT",<EOL>    "details": [<EOL>      {<EOL>        "@type": "type.googleapis.com/google.rpc.ErrorInfo",<EOL>        "reason": "API_KEY_INVALID",<EOL>        "domain": "googleapis.com",<EOL>        "metadata": {<EOL>          "service": "generativelanguage.googleapis.com"<EOL>        }<EOL>      },<EOL>      {<EOL>        "@type": "type.googleapis.com/google.rpc.LocalizedMessage",<EOL>        "locale": "en-US",<EOL>        "message": "API key not valid. Please pass a valid API key."<EOL>      }<EOL>    ]<EOL>  }<EOL>}<EOL>"
+12:06:37.731 [http-nio-8080-exec-10] INFO  com.finscore.service.RAGService - Calling RAG service for tips: occupation=Other, score=34
+12:06:37.855 [http-nio-8080-exec-10] INFO  c.f.service.CreditScoringService - Assessment saved with ID: 2 | Score: 34 | Risk: High Risk
+12:06:37.856 [http-nio-8080-exec-10] INFO  c.f.controller.CreditController - Assessment completed: ID=2, Score=34, Risk=High Risk
+12:07:04.299 [http-nio-8080-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 90022, SQLState: 90022
+12:07:04.299 [http-nio-8080-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Function "DATE" not found; SQL statement:
+SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day [90022-224]
+12:07:04.300 [http-nio-8080-exec-6] WARN  c.f.controller.DashboardController - Daily volume query failed (expected on H2): could not prepare statement [Function "DATE" not found; SQL statement:
+SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day [90022-224]] [SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day]; SQL [SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day]
+16:23:37.808 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h16m13s276ms68µs500ns).
+16:23:38.114 [http-nio-8080-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 90022, SQLState: 90022
+16:23:38.114 [http-nio-8080-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Function "DATE" not found; SQL statement:
+SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day [90022-224]
+16:23:38.116 [http-nio-8080-exec-2] WARN  c.f.controller.DashboardController - Daily volume query failed (expected on H2): could not prepare statement [Function "DATE" not found; SQL statement:
+SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day [90022-224]] [SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day]; SQL [SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day]
+16:30:20.482 [http-nio-8080-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 90022, SQLState: 90022
+16:30:20.482 [http-nio-8080-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Function "DATE" not found; SQL statement:
+SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day [90022-224]
+16:30:20.483 [http-nio-8080-exec-2] WARN  c.f.controller.DashboardController - Daily volume query failed (expected on H2): could not prepare statement [Function "DATE" not found; SQL statement:
+SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day [90022-224]] [SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day]; SQL [SELECT DATE(created_at) as day, COUNT(*) FROM borrower_assessments WHERE credit_score IS NOT NULL AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY day ORDER BY day]
+20:26:26.789 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h51m48s762ms942µs800ns).
+20:54:47.799 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7m20s731ms251µs600ns).
+21:00:22.104 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+21:00:22.139 [Thread-5] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:00:22.161 [Thread-5] WARN  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-224]
+21:00:22.162 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+21:00:22.167 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+21:00:22.376 [restartedMain] INFO  com.finscore.FinScoreAiApplication - Starting FinScoreAiApplication using Java 22.0.2 with PID 18688 (E:\AI HAcKaTHON\credit-scoring\backend\target\classes started by ayush in E:\AI HAcKaTHON\credit-scoring\backend)
+21:00:22.376 [restartedMain] INFO  com.finscore.FinScoreAiApplication - No active profile set, falling back to 1 default profile: "default"
+21:00:23.170 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:00:23.199 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29 ms. Found 1 JPA repository interface.
+21:00:23.711 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+21:00:23.713 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:00:23.714 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+21:00:23.777 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:00:23.777 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1393 ms
+21:00:23.866 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+21:00:23.873 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection conn40: url=jdbc:h2:mem:finscoreai user=SA
+21:00:23.873 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+21:00:23.873 [restartedMain] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:finscoreai'
+21:00:23.995 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:00:24.003 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+21:00:24.012 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+21:00:24.016 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+21:00:24.266 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+21:00:24.284 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:00:24.715 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+21:00:24.763 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+21:00:25.182 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+21:00:25.214 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+21:00:25.229 [restartedMain] INFO  com.finscore.FinScoreAiApplication - Started FinScoreAiApplication in 2.905 seconds (process running for 32463.389)
+21:00:25.234 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+21:01:05.352 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+21:01:05.361 [Thread-8] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:01:05.362 [Thread-8] WARN  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-224]
+21:01:05.363 [Thread-8] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+21:01:05.364 [Thread-8] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+21:01:05.472 [restartedMain] INFO  com.finscore.FinScoreAiApplication - Starting FinScoreAiApplication using Java 22.0.2 with PID 18688 (E:\AI HAcKaTHON\credit-scoring\backend\target\classes started by ayush in E:\AI HAcKaTHON\credit-scoring\backend)
+21:01:05.473 [restartedMain] INFO  com.finscore.FinScoreAiApplication - No active profile set, falling back to 1 default profile: "default"
+21:01:05.729 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:01:05.742 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 1 JPA repository interface.
+21:01:05.881 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+21:01:05.882 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:01:05.882 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+21:01:05.900 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:01:05.900 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 426 ms
+21:01:05.930 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+21:01:05.933 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection conn50: url=jdbc:h2:mem:finscoreai user=SA
+21:01:05.934 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+21:01:05.934 [restartedMain] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:finscoreai'
+21:01:05.966 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:01:05.969 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+21:01:05.972 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+21:01:05.972 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+21:01:06.033 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+21:01:06.039 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:01:06.240 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pageController' defined in file [E:\AI HAcKaTHON\credit-scoring\backend\target\classes\com\finscore\controller\PageController.class]: Failed to instantiate [com.finscore.controller.PageController]: Constructor threw exception
+21:01:06.241 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:01:06.242 [restartedMain] WARN  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-224]
+21:01:06.242 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+21:01:06.243 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+21:01:06.244 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+21:01:06.257 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+21:01:06.298 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pageController' defined in file [E:\AI HAcKaTHON\credit-scoring\backend\target\classes\com\finscore\controller\PageController.class]: Failed to instantiate [com.finscore.controller.PageController]: Constructor threw exception
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:322) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:310) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1356) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:946) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331) ~[spring-boot-3.2.0.jar:3.2.0]
+	at com.finscore.FinScoreAiApplication.main(FinScoreAiApplication.java:23) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.2.0.jar:3.2.0]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.finscore.controller.PageController]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:223) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:319) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 22 common frames omitted
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	Syntax error, insert "Identifier (" to complete ConstructorHeaderName
+	Syntax error, insert ")" to complete ConstructorDeclaration
+	Syntax error, insert ";" to complete ConstructorDeclaration
+	Syntax error on token "}", delete this token
+	Duplicate method homePage(Model) in type PageController
+	Duplicate method formPage(Model) in type PageController
+	Duplicate method resultPage(Long, Model) in type PageController
+	Duplicate method dashboardPage(Model) in type PageController
+
+	at com.finscore.controller.PageController.<init>(PageController.java:34) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486) ~[na:na]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:210) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 24 common frames omitted
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+21:01:59.697 [restartedMain] INFO  com.finscore.FinScoreAiApplication - Starting FinScoreAiApplication using Java 22.0.2 with PID 18688 (E:\AI HAcKaTHON\credit-scoring\backend\target\classes started by ayush in E:\AI HAcKaTHON\credit-scoring\backend)
+21:01:59.698 [restartedMain] INFO  com.finscore.FinScoreAiApplication - No active profile set, falling back to 1 default profile: "default"
+21:01:59.869 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:01:59.874 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 1 JPA repository interface.
+21:02:00.039 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+21:02:00.043 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:02:00.043 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+21:02:00.063 [restartedMain] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:02:00.063 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 362 ms
+21:02:00.085 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Starting...
+21:02:00.091 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-4 - Added connection conn60: url=jdbc:h2:mem:finscoreai user=SA
+21:02:00.091 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Start completed.
+21:02:00.092 [restartedMain] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:finscoreai'
+21:02:00.121 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:02:00.124 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+21:02:00.127 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+21:02:00.128 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+21:02:00.175 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+21:02:00.180 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:02:00.287 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+21:02:00.304 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+21:02:00.401 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+21:02:00.423 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+21:02:00.426 [restartedMain] INFO  com.finscore.FinScoreAiApplication - Started FinScoreAiApplication in 0.766 seconds (process running for 32558.586)
+21:02:00.427 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
