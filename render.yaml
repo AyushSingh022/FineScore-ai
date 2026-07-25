@@ -10,11 +10,13 @@ services:
   - type: web
     name: finscore-ml-service
     runtime: docker
-    dockerfilePath: ./ml-service/Dockerfile
+    dockerfilePath: Dockerfile
     dockerContext: ./ml-service
     plan: free
     healthCheckPath: /health
     envVars:
+      - key: PORT
+        value: 8000
       - key: ML_PORT
         value: 8000
 
@@ -22,7 +24,7 @@ services:
   - type: web
     name: finscore-backend
     runtime: docker
-    dockerfilePath: ./backend/Dockerfile
+    dockerfilePath: Dockerfile
     dockerContext: ./backend
     plan: free
     healthCheckPath: /api/states
