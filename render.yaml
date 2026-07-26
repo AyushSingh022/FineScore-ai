@@ -11,7 +11,7 @@ services:
     name: finscore-ml-service
     runtime: docker
     dockerfilePath: Dockerfile
-    dockerContext: ./ml-service
+    dockerContext: ./credit-scoring/ml-service
     plan: free
     healthCheckPath: /health
     envVars:
@@ -25,7 +25,7 @@ services:
     name: finscore-backend
     runtime: docker
     dockerfilePath: Dockerfile
-    dockerContext: ./backend
+    dockerContext: ./credit-scoring/backend
     plan: free
     healthCheckPath: /api/states
     envVars:
