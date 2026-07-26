@@ -10,7 +10,7 @@ services:
   - type: web
     name: finscore-ml-service
     runtime: docker
-    dockerfilePath: Dockerfile
+    dockerfilePath: ./credit-scoring/ml-service/Dockerfile
     dockerContext: ./credit-scoring/ml-service
     plan: free
     healthCheckPath: /health
@@ -24,7 +24,7 @@ services:
   - type: web
     name: finscore-backend
     runtime: docker
-    dockerfilePath: Dockerfile
+    dockerfilePath: ./credit-scoring/backend/Dockerfile
     dockerContext: ./credit-scoring/backend
     plan: free
     healthCheckPath: /api/states
