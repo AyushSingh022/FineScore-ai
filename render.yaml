@@ -44,10 +44,6 @@ services:
         sync: false
       - key: DB_PASSWORD
         sync: false
-      - key: DB_DRIVER
-        value: com.mysql.cj.jdbc.Driver
-      - key: DB_DIALECT
-        value: org.hibernate.dialect.MySQLDialect
       - key: ADMIN_USERNAME
         value: admin
       - key: ADMIN_PASSWORD
