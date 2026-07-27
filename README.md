@@ -86,7 +86,7 @@ FinScore AI uses **alternate financial behavior data** to generate fair credit s
 | Python | 3.10+ |
 | MySQL | 8.0+ |
 | Maven | 3.8+ |
-| Node.js | Not required |
+
 
 ---
 
